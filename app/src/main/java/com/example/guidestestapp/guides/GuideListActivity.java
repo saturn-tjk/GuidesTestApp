@@ -1,10 +1,12 @@
-package com.example.guidestestapp;
+package com.example.guidestestapp.guides;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.guidestestapp.R;
+
+public class GuideListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
