@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface DataSource {
 
-    void getGuides(LoadGuidesCallBack callBack);
+    void getGuides(int startPosition, int loadSize, LoadGuidesCallBack callBack);
 
     void getGuide(LoadGuideCallBack callBack);
 

@@ -1,5 +1,6 @@
 package com.example.guidestestapp.data;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,6 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "guides")
 public class Guide {
 
+    @NonNull
     @PrimaryKey
     private String url;
     @ColumnInfo(name = "endData")
@@ -16,13 +18,14 @@ public class Guide {
     @ColumnInfo(name = "imgUrl")
     private String imgUrl;
 
-    public Guide(String url, String endData, String name, String imgUrl) {
+    public Guide(@NonNull String url, String endData, String name, String imgUrl) {
         this.url = url;
         this.endData = endData;
         this.name = name;
         this.imgUrl = imgUrl;
     }
 
+    @NonNull
     public String getUrl() {
         return url;
     }
