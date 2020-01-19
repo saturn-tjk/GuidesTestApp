@@ -26,7 +26,7 @@ public class LocalRepository implements DataSource {
     }
 
     @Override
-    public void getGuides(final LoadGuidesCallBack callBack) {
+    public void getGuides(int startPosition, int loadSize, final LoadGuidesCallBack callBack) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {

@@ -20,7 +20,7 @@ public class AppExecutors {
         this.mainThread = mainThread;
     }
 
-    public AppExecutors(){
+    public AppExecutors() {
         this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(THREAD_COUNT), new MainThreadExecutor());
     }
 

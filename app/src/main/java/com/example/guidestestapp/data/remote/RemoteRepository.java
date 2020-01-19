@@ -39,7 +39,7 @@ public class RemoteRepository implements DataSource {
 
 
     @Override
-    public void getGuides(final LoadGuidesCallBack callBack) {
+    public void getGuides(int startPosition, int loadSize, final LoadGuidesCallBack callBack) {
         final RequestQueue requestQueue = Volley.newRequestQueue(context);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, guidesUrl,
@@ -47,6 +47,7 @@ public class RemoteRepository implements DataSource {
                     @Override
                     public void onResponse(String response) {
                         callBack.onGuidesLoaded(creteGuidesFromJsonStr(response));
+                        //json(response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -73,9 +74,11 @@ public class RemoteRepository implements DataSource {
     private List<Guide> creteGuidesFromJsonStr(String jsonString){
 
         List<Guide> guides = new ArrayList<>();
+        JSONObject mainJsonObject = null;
         JSONArray jsonArray = null;
         try {
-            jsonArray = new JSONArray(jsonString);
+            mainJsonObject = new JSONObject(jsonString);
+            jsonArray = mainJsonObject.getJSONArray("data");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -87,7 +90,7 @@ public class RemoteRepository implements DataSource {
                 jsonObject = jsonArray.getJSONObject(i);
                 Guide guide = new Guide(
                         jsonObject.getString("url"),
-                        jsonObject.getString("endData"),
+                        jsonObject.getString("endDate"),
                         jsonObject.getString("name"),
                         jsonObject.getString("icon")
                 );
@@ -100,5 +103,15 @@ public class RemoteRepository implements DataSource {
 
         }
         return guides;
+    }
+
+    private JSONObject json(String s) {
+        JSONObject main = null;
+        try {
+            main = new JSONObject(s);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return main;
     }
 }

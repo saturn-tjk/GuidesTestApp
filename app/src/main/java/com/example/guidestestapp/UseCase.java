@@ -3,7 +3,7 @@ package com.example.guidestestapp;
 public abstract class UseCase<Q extends UseCase.RequestValue, P extends UseCase.ResponseValue> {
 
     private Q requestValues;
-    private UseCaseCallback<P> useCaseCallback;
+
 
     public Q getRequestValues() {
         return requestValues;
@@ -13,19 +13,9 @@ public abstract class UseCase<Q extends UseCase.RequestValue, P extends UseCase.
         this.requestValues = requestValues;
     }
 
-    public UseCaseCallback<P> getUseCaseCallback() {
-        return useCaseCallback;
-    }
+    public abstract void executeUseCase(Q requestValues, UseCaseCallback<P> callback);
 
-    public void setUseCaseCallback(UseCaseCallback<P> useCaseCallback) {
-        this.useCaseCallback = useCaseCallback;
-    }
 
-    void run() {
-        executeUseCase(requestValues);
-    }
-
-    protected abstract void executeUseCase(Q requestValues);
 
     public interface RequestValue {
 
